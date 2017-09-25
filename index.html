@@ -15,7 +15,7 @@
 			$( "a" ).click(function( event ) {			
 				if( $(this).attr("href") != 'index.html'){
 					event.preventDefault();
-					console.log('here');
+					
 					$.ajax({
 						url: "content/" + $(this).attr("href"),
 						cache: false,
