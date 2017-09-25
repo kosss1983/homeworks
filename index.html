@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li><a class="home" href="index.html">Home</a></li>
+			<li><a href="contacts.html">Contacts</a></li>
+			<li><a href="price.html">Price</a></li>
+			<li><a href="about.html">About</a></li>
+		</ul>
+		<div id="content"></div>
+		
+		<script>
+			$( "a" ).click(function( event ) {			
+				if( $(this).attr("href") != 'index.html'){
+					event.preventDefault();
+					console.log('here');
+					$.ajax({
+						url: "content/" + $(this).attr("href"),
+						cache: false,
+						success: function(html){
+							$("#content").html(html);
+						}
+					});
+				}				
+			});
+		</script>
+	</body>
+</html>
