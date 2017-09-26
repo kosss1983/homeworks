@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h2>Websocket test</h2>
+		
+		<input type="button" id="send" value="init chat">
+		<input type="button" id="add" value="send" style="display: none" />
+		<textarea id="inputtext" cols="35" style="display: none"></textarea>
+		<textarea id="showtext" cols="35" style="display: none" disabled></textarea>
+		
+		<script type="text/javascript">
+			var isOpened = false;
+			
+			$("#send").click(function() {
+				window.WebSocket = window.WebSocket || window.MozWebSocket
+				
+				var connection = new WebSocket("ws://localhost:8080");
+				
+				connection.onopen = function() {
+					isOpened = true;
+					
+					$("#inputtext").show();
+					$("#showtext").show();
+					$("#add").show();
+					$("#send").hide();
+					console.log('conn opened');
+				}
+				
+				connection.onerror = function(error) {
+					console.log('ERROR');
+				}
+				
+				connection.onmessage = function(message) {
+					var text = $("#showtext").text();
+					$("#showtext").html(text + " " + message.data);
+				}
+				
+				$("#add").click(function() {
+					if(isOpened) {
+						connection.send($("#inputtext").val());
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
