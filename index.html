@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+        <title>Circles</title>
+    </head>
+    <body>
+        <style>
+            .container{
+                width: 800px;
+                height: 600px;
+                border: 1px solid #ccc;
+                position: relative
+            }
+            
+            .circle{
+                position: absolute;
+                border-radius: 50%;
+                border: 1px solid #333
+            }
+        </style>
+
+        <div class="container" id="cont_1"></div>
+        <input type="button" value="make circle" id="action"/>
+        <div class="container" id="cont_2"></div>
+        <script src="script.js"></script>
+    </body>
+</html>
