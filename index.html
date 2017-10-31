@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Page Title</title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <style type="text/css">
+            .clock {
+                width: 260px;
+                height: 260px;
+                margin-left: 100px;
+                margin-top: 50px;
+                border-radius: 50%;
+                position: relative;
+                background: #fefefe;
+                border: 2px solid #222;
+                box-sizing: content-box;
+                background-size: 112%;
+                background-image: url('http://img0.liveinternet.ru/images/attach/c/7/94/500/94500074_6.png');
+                background-position: -18px -12px;
+            }
+
+            .hour {
+                width: 4px;
+                height: 60px;
+                background: #222;
+                position: absolute;
+                left: 128px;
+                top:72px;
+                transform: rotate(60deg);
+                transform-origin: 2px 58px;
+            }
+
+            .minute {
+                width: 4px;
+                height: 110px;
+                background: #222;
+                position: absolute;
+                left: 128px;
+                top:22px;
+                transform: rotate(200deg);
+                transform-origin: 2px 108px;
+            }
+
+            .second {
+                width: 2px;
+                height: 110px;
+                background: red;
+                position: absolute;
+                left: 129px;
+                top:21px;
+                transform: rotate(270deg);
+                transform-origin: 1px 109px;
+            }
+
+            .pin {
+                top: 50%;
+                left: 50%;
+                margin-top:-5px;
+                margin-left: -5px;
+                background: #fff;
+                border-radius: 50%;
+                box-sizing: border-box;
+                width: 10px;
+                height: 10px;
+                border: 1px solid #666;
+                position: absolute;
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="clock">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+            <div class="pin"></div>
+        </div>
+
+        <script>
+            $(function () {
+
+                //ВАШ КОД ТУТ
+                function update()
+                {
+
+                    var date = new Date();
+
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+
+                    var hdegree = hours * 30 + (minutes / 2);
+                    var hrotate = "rotate(" + hdegree + "deg)";
+                    $(".hour").css({"-moz-transform": hrotate, "-webkit-transform": hrotate});
+
+                    var mdegree = minutes * 6;
+                    var mrotate = "rotate(" + mdegree + "deg)";
+                    $(".minute").css({"-moz-transform": mrotate, "-webkit-transform": mrotate});
+
+                    var sdegree = seconds * 6;
+                    var srotate = "rotate(" + sdegree + "deg)";
+                    $(".second").css({"-moz-transform": srotate, "-webkit-transform": srotate});
+
+                }
+
+                function Start()
+                {
+                    update();
+                    setTimeout(function () {
+                        Start();
+                    }, 1000);
+                }
+
+                Start();
+            });
+
+        </script>
+    </body>
+</html>
